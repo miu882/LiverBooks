@@ -340,6 +340,16 @@
       </section>
 
       <section id="settings" class="section">
+        <hr>
+
+<h3>データ出力</h3>
+
+<button onclick="exportCSV()">CSV出力</button>
+
+<button onclick="exportBackup()">バックアップ保存</button>
+
+<label>バックアップ復元</label>
+<input type="file" accept=".json" onchange="importBackup(event)">
 
         <h2>設定</h2>
 
