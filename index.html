@@ -271,12 +271,14 @@
 
           </select>
 
-        ><label>領収書</label>
+        <label>領収書</label>
 
-<select id="receipt">
-    <option value="あり">あり</option>
-    <option value="なし">なし</option>
-</select>
+<div class="toggle-group">
+  <button type="button" id="receiptYes" class="toggle active" onclick="setReceipt('あり')">あり</button>
+  <button type="button" id="receiptNo" class="toggle" onclick="setReceipt('なし')">なし</button>
+</div>
+
+<input type="hidden" id="receipt" value="あり">
 
 <label>領収書画像</label>
 <input type="file" id="receiptImage" accept="image/*">
