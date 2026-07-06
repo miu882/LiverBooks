@@ -67,14 +67,12 @@ function resetExpenseForm() {
   }
 }
 function setReceipt(value) {
-  document.getElementById("receipt").value = value;
+  const receipt = document.getElementById("receipt");
+  const yes = document.getElementById("receiptYes");
+  const no = document.getElementById("receiptNo");
 
-  document.getElementById("receiptYes").classList.remove("active");
-  document.getElementById("receiptNo").classList.remove("active");
+  receipt.value = value;
 
-  if (value === "あり") {
-    document.getElementById("receiptYes").classList.add("active");
-  } else {
-    document.getElementById("receiptNo").classList.add("active");
-  }
+  yes.classList.toggle("active", value === "あり");
+  no.classList.toggle("active", value === "なし");
 }
