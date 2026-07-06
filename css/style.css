@@ -213,3 +213,20 @@ td{
   color: white;
   font-weight: bold;
 }
+.toggle-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.toggle-group .toggle {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 11;
+  pointer-events: auto;
+  opacity: 1;
+}
