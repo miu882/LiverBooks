@@ -67,7 +67,7 @@ function resetExpenseForm() {
   }
 }
 function setReceipt(value) {
-  const receipt = document.getElementById("receipt");
+  const receipt = document.querySelector('input[name="receipt"]:checked').value;
   const yes = document.getElementById("receiptYes");
   const no = document.getElementById("receiptNo");
 

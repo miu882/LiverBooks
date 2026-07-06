@@ -230,3 +230,29 @@ td{
   pointer-events: auto;
   opacity: 1;
 }
+.receipt-radio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.receipt-radio input {
+  display: none;
+}
+
+.receipt-radio span {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border-radius: 12px;
+  background: #e5e7eb;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.receipt-radio input:checked + span {
+  background: #25b7d3;
+  color: white;
+}

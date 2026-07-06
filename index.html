@@ -271,11 +271,18 @@
 
           </select>
 
-        <label>領収書</label>
+      <label>領収書</label>
 
-<div class="toggle-group">
-  <button type="button" id="receiptYes" class="toggle active" onclick="setReceipt('あり')">あり</button>
-  <button type="button" id="receiptNo" class="toggle" onclick="setReceipt('なし')">なし</button>
+<div class="receipt-radio">
+  <label>
+    <input type="radio" name="receipt" value="あり" checked>
+    <span>あり</span>
+  </label>
+
+  <label>
+    <input type="radio" name="receipt" value="なし">
+    <span>なし</span>
+  </label>
 </div>
 
 <input type="hidden" id="receipt" value="あり">
