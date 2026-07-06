@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>LiverBooks</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+  <div id="loginScreen" class="login">
+
+    <div class="logo-icon">🎥</div>
+
+    <h1>LiverBooks</h1>
+
+    <p>ライバー専用 会計管理ツール</p>
+
+    <label>パスワード</label>
+
+    <input type="password" id="password" placeholder="1234">
+
+    <button onclick="login()">ログイン</button>
+
+    <p id="loginMessage" class="error"></p>
+
+  </div>
+
+  <div id="appScreen" class="app" style="display:none;">
+
+    <aside class="sidebar">
+
+      <h1>🎥 LiverBooks</h1>
+
+      <button onclick="showSection('dashboard')">🏠 ダッシュボード</button>
+
+      <button onclick="showSection('sales')">💰 売上入力</button>
+
+      <button onclick="showSection('expense')">🧾 経費入力</button>
+
+      <button onclick="showSection('ledger')">📋 帳簿一覧</button>
+
+      <button onclick="showSection('settings')">⚙️ 設定</button>
+
+      <button onclick="logout()">🚪 ログアウト</button>
+
+    </aside>
+
+    <main class="main">
+
+      <section id="dashboard" class="section active">
+
+        <h2>ダッシュボード</h2>
+
+        <div class="cards">
+
+          <div class="card">
+
+            <p>売上合計</p>
+
+            <strong>¥<span id="salesTotal">0</span></strong>
+
+          </div>
+
+          <div class="card">
+
+            <p>手数料合計</p>
+
+            <strong>¥<span id="feeTotal">0</span></strong>
+
+          </div>
+
+          <div class="card">
+
+            <p>経費合計</p>
+
+            <strong>¥<span id="expenseTotal">0</span></strong>
+
+          </div>
+
+          <div class="card">
+
+            <p>利益</p>
+
+            <strong>¥<span id="profitTotal">0</span></strong>
+
+          </div>
+
+          <div class="card">
+
+            <p>入金予定額</p>
+
+            <strong>¥<span id="depositTotal">0</span></strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section id="sales" class="section">
+
+        <h2>売上入力</h2>
+
+        <div class="card">
+
+          <label>日付</label>
+
+          <input type="date" id="salesDate">
+
+          <label>プラットフォーム</label>
+
+          <select id="platform">
+
+            <option>TikTok</option>
+
+            <option>Pococha</option>
+
+            <option>17LIVE</option>
+
+            <option>IRIAM</option>
+
+            <option>REALITY</option>
+
+            <option>BIGO LIVE</option>
+
+            <option>その他</option>
+
+          </select>
+
+          <label>売上種別</label>
+
+          <select id="salesType">
+
+            <option>投げ銭</option>
+
+            <option>ボーナス</option>
+
+            <option>時給</option>
+
+            <option>案件報酬</option>
+
+            <option>その他</option>
+
+          </select>
+
+          <label>入力方法</label>
+
+          <select id="salesInputType" onchange="updateSalesPreview()">
+
+            <option value="yen">円で入力</option>
+
+            <option value="coin">TikTokコインで入力</option>
+
+            <option value="diamond">ダイヤで入力</option>
+
+          </select>
+
+          <label>数量・金額</label>
+
+          <input type="number" id="salesValue" oninput="updateSalesPreview()" placeholder="例：100000">
+
+          <label>換算後の売上金額</label>
+
+          <input type="text" id="convertedSales" readonly>
+
+          <label>出金方法</label>
+
+          <select id="withdrawMethod" onchange="updateSalesPreview()">
+
+            <option>PayPal</option>
+
+            <option>Payoneer</option>
+
+            <option>銀行送金</option>
+
+            <option>WebMoney Wallet</option>
+
+            <option>PromptPay</option>
+
+            <option>GCash</option>
+
+            <option>DANA</option>
+
+            <option>GoPay</option>
+
+            <option>クレジットカード/デビットカード</option>
+
+            <option>その他</option>
+
+          </select>
+
+          <label>手数料</label>
+
+          <input type="text" id="feePreview" readonly>
+
+          <label>入金予定額</label>
+
+          <input type="text" id="depositPreview" readonly>
+
+          <label>入金予定日</label>
+
+          <input type="date" id="depositDate">
+
+          <label>メモ</label>
+
+          <input type="text" id="salesMemo" placeholder="例：7月分 TikTok投げ銭">
+
+          <button onclick="addSales()">売上を保存</button>
+
+        </div>
+
+      </section>
+
+      <section id="expense" class="section">
+
+        <h2>経費入力</h2>
+
+        <div class="card">
+
+          <label>日付</label>
+
+          <input type="date" id="expenseDate">
+          <label>カテゴリ</label>
+
+          <select id="expenseCategory">
+
+            <option>衣装</option>
+
+            <option>美容</option>
+
+            <option>通信費</option>
+
+            <option>機材</option>
+
+            <option>家賃按分</option>
+
+            <option>交通費</option>
+
+            <option>外注費</option>
+
+            <option>消耗品</option>
+
+            <option>その他</option>
+
+          </select>
+
+          <label>金額</label>
+
+          <input type="number" id="expenseAmount" placeholder="例：5000">
+
+          <label>支払い方法</label>
+
+          <select id="paymentMethod">
+
+            <option>現金</option>
+
+            <option>クレジットカード</option>
+
+            <option>銀行口座</option>
+
+            <option>PayPay</option>
+
+            <option>その他</option>
+
+          </select>
+
+          <label>領収書</label>
+
+          <select id="receipt">
+
+            <option>あり</option>
+
+            <option>なし</option>
+
+          </select>
+
+          <label>メモ</label>
+
+          <input type="text" id="expenseMemo" placeholder="例：配信用衣装">
+
+          <button onclick="addExpense()">経費を保存</button>
+
+        </div>
+
+      </section>
+
+      <section id="ledger" class="section">
+
+        <h2>帳簿一覧</h2>
+
+        <div class="card">
+
+          <label>表示月</label>
+
+          <input type="month" id="ledgerMonth" onchange="render()">
+
+        </div>
+
+        <div class="card table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>区分</th>
+
+                <th>日付</th>
+
+                <th>内容</th>
+
+                <th>金額</th>
+
+                <th>手数料</th>
+
+                <th>入金予定額</th>
+
+                <th>メモ</th>
+
+                <th>削除</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="ledgerList"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <section id="settings" class="section">
+
+        <h2>設定</h2>
+
+        <div class="card">
+
+          <label>コイン1枚あたりの円換算</label>
+
+          <input type="number" id="coinRate" value="1">
+
+          <label>ダイヤ1個あたりの円換算</label>
+
+          <input type="number" id="diamondRate" value="0.5">
+
+          <label>USD → 円</label>
+
+          <input type="number" id="usdRate" value="160">
+
+          <label>IDR → 円</label>
+
+          <input type="number" id="idrRate" value="0.01">
+
+          <button onclick="saveSettings()">設定を保存</button>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="js/storage.js"></script>
+
+  <script src="js/settings.js"></script>
+
+  <script src="js/sales.js"></script>
+
+  <script src="js/expense.js"></script>
+
+  <script src="js/ledger.js"></script>
+
+  <script src="js/csv.js"></script>
+
+  <script src="js/backup.js"></script>
+
+  <script src="js/app.js"></script>
+  
+  </body>
+
+</html>
