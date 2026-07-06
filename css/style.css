@@ -59,30 +59,33 @@ body{
 }
 
 .sidebar{
-    width:240px;
-    background:#fff;
-    border-right:1px solid #eee;
-    padding:25px;
+    width:260px;
+    background:#111111;
+    color:wheat;
+    padding:24px;
 }
 
 .sidebar h1{
     margin-bottom:25px;
 }
-
 .sidebar button{
     width:100%;
+    background:#1e1e1e;
+    color:white;
     border:none;
-    background:#f4f7fb;
+    border-radius:12px;
     padding:14px;
-    margin-bottom:10px;
-    border-radius:10px;
+    margin-bottom:12px;
     cursor:pointer;
-    text-align:left;
     transition:.2s;
 }
 
 .sidebar button:hover{
-    background:#25b7d3;
+    background:#2f2f2f;
+}
+
+.sidebar button.active{
+    background:#00c2ff;
     color:white;
 }
 
