@@ -66,17 +66,15 @@ function resetExpenseForm() {
     receiptImageInput.value = "";
   }
 }
-function setReceipt(value){
+function setReceipt(value) {
+  document.getElementById("receipt").value = value;
 
-    document.getElementById("receipt").value=value;
+  document.getElementById("receiptYes").classList.remove("active");
+  document.getElementById("receiptNo").classList.remove("active");
 
-    document.getElementById("receiptYes").classList.remove("active");
-    document.getElementById("receiptNo").classList.remove("active");
-
-    if(value==="あり"){
-        document.getElementById("receiptYes").classList.add("active");
-    }else{
-        document.getElementById("receiptNo").classList.add("active");
-    }
-
+  if (value === "あり") {
+    document.getElementById("receiptYes").classList.add("active");
+  } else {
+    document.getElementById("receiptNo").classList.add("active");
+  }
 }
