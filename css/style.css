@@ -259,3 +259,34 @@ td{
   background: #25b7d3;
   color: white;
 }
+/* 左メニュー：白背景 × 黒文字 × 選択中だけ水色 */
+.sidebar {
+  background: #ffffff;
+  color: #000;
+  border-right: 1px solid #e5e7eb;
+}
+
+.sidebar h1 {
+  color: #000;
+}
+
+.sidebar button {
+  background: #ffffff;
+  color: #000;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.sidebar button:hover {
+  background: #f1f5f9;
+  color: #000;
+}
+
+.sidebar button.active {
+  background: #25b7d3;
+  color: #ffffff;
+}
